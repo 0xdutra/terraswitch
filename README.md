@@ -10,7 +10,7 @@
       <img src="https://img.shields.io/badge/License-BSD-green.svg">
     </a>
     <a href="https://github.com/0xdutra/terraswitch/tags">
-      <img src="https://img.shields.io/badge/version-0.1.0-blue.svg">
+      <img src="https://img.shields.io/badge/version-1.0.0-blue.svg">
     </a>
   </p>
 </p>
