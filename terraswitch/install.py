@@ -49,7 +49,7 @@ class Install:
         try:
             self._extract_file()
         except Exception as e:
-            print("[+] - Extract failed")
+            print(f"[+] - Extract failed: {e}")
 
         user_home = os.getenv('HOME')
         local_path = os.getcwd()
