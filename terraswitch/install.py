@@ -29,6 +29,12 @@ class Install:
     def _get_current_user(self):
         return os.getuid()
 
+    def _get_current_directory(self):
+        return os.getcwd()
+
+    def _get_user_home(self):
+        return os.getenv('HOME')
+
     def _create_symbolic_link(self, src, dest):
         try:
             os.symlink(src, dest)
@@ -51,9 +57,8 @@ class Install:
         except Exception as e:
             print(f"[+] - Extract failed: {e}")
 
-        user_home = os.getenv('HOME')
-        local_path = os.getcwd()
-
+        user_home = self._get_user_home()
+        local_path = self._get_current_directory()
         uid = self._get_current_user()
 
         if uid == 0:
