@@ -26,6 +26,9 @@ class Install:
             print(e)
             sys.exit(1)
 
+    def _get_current_user(self):
+        return os.getuid()
+
     def _create_symbolic_link(self, src, dest):
         try:
             os.symlink(src, dest)
@@ -51,8 +54,14 @@ class Install:
         user_home = os.getenv('HOME')
         local_path = os.getcwd()
 
-        terraform_bin = f"{local_path}/terraform"
-        terraform_bin_local_path = f"{user_home}/.local/bin/terraform"
+        uid = self._get_current_user()
+
+        if uid == 0:
+            terraform_bin = f"{local_path}/terraform"
+            terraform_bin_local_path = "/usr/local/bin"
+        else:
+            terraform_bin = f"{local_path}/terraform"
+            terraform_bin_local_path = f"{user_home}/.local/bin/terraform"
 
         if path.isfile(terraform_bin_local_path) or path.islink(
                 terraform_bin_local_path):
@@ -60,3 +69,5 @@ class Install:
             self._remove_current_version(terraform_bin_local_path)
 
         self._create_symbolic_link(terraform_bin, terraform_bin_local_path)
+
+        print(f"[+] - Terraform has been successfully installed.")

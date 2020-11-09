@@ -34,8 +34,6 @@ class Download():
         zip_file = f"terraform_{version}_{os}_{arch}.zip"
         url = f"{self._url}/{version}/{zip_file}"
 
-        install = Install(zip_file)
-
         if version_path is not False:
             print(f"[+] - Downloading version {version} of Terraform")
 
@@ -45,7 +43,4 @@ class Download():
             with open(zip_file, 'wb') as file:
                 file.write(download.content)
 
-        install.install_binary()
-        print(
-            f"[+] - Terraform in version {version} has been successfully installed."
-        )
+        return zip_file
