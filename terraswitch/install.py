@@ -63,7 +63,7 @@ class Install:
 
         if uid == 0:
             terraform_bin = f"{local_path}/terraform"
-            terraform_bin_local_path = "/usr/local/bin"
+            terraform_bin_local_path = "/usr/local/bin/"
         else:
             terraform_bin = f"{local_path}/terraform"
             terraform_bin_local_path = f"{user_home}/.local/bin/terraform"
