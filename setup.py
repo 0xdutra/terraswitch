@@ -1,4 +1,4 @@
-from setuptools import setup, find_packages
+from setuptools import setup
 
 with open("README.md", "r") as fh:
     long_description = fh.read()
@@ -16,18 +16,13 @@ setup(
     platforms=["any"],
     packages=['terraswitch'],
     package_dir={"terraswitch": "terraswitch"},
-    entry_points={"console_scripts": ["terraswitch = terraswitch.__main__:main"]},
+    entry_points={
+        "console_scripts": ["terraswitch = terraswitch.__main__:main"]
+    },
     keywords=["Terraform", "versions", "hashicorp"],
-    install_requires = [
-        "beautifulsoup4",
-        "certifi",
-        "chardet",
-        "click",
-        "idna",
-        "lxml",
-        "requests",
-        "soupsieve",
-        "urllib3"
+    install_requires=[
+        "beautifulsoup4", "certifi", "chardet", "click", "idna", "lxml",
+        "requests", "soupsieve", "urllib3"
     ],
     classifiers=[
         "Programming Language :: Python :: 3",

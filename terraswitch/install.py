@@ -6,6 +6,7 @@ import stat
 from os import path
 from zipfile import ZipFile
 
+
 class Install:
     def __init__(self, path):
         self.path = path
@@ -53,7 +54,8 @@ class Install:
         terraform_bin = f"{local_path}/terraform"
         terraform_bin_local_path = f"{user_home}/.local/bin/terraform"
 
-        if path.isfile(terraform_bin_local_path) or path.islink(terraform_bin_local_path):
+        if path.isfile(terraform_bin_local_path) or path.islink(
+                terraform_bin_local_path):
             print("[+] - Removing current version of terraform")
             self._remove_current_version(terraform_bin_local_path)
 
