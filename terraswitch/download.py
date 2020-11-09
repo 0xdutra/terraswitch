@@ -5,6 +5,7 @@ from terraswitch.crawler import Crawler
 from terraswitch.install import Install
 from terraswitch.config import Config
 
+
 class Download():
     def __init__(self, url):
         self._url = url
@@ -45,4 +46,6 @@ class Download():
                 file.write(download.content)
 
         install.install_binary()
-        print(f"[+] - Terraform in version {version} has been successfully installed.")
+        print(
+            f"[+] - Terraform in version {version} has been successfully installed."
+        )

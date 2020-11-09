@@ -3,6 +3,7 @@ import time
 from bs4 import BeautifulSoup
 from terraswitch.crawler import Crawler
 
+
 class Versions(Crawler):
     def __init__(self, url):
         super().__init__(url)

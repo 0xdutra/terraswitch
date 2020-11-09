@@ -1,12 +1,13 @@
 import os
 from os import path
 
+
 class Config:
     def __init__(self, version):
         self._version = version
 
     def _check_version_exist(self, version_path):
-        if(path.exists(version_path)):
+        if (path.exists(version_path)):
             return True
         return False
 
