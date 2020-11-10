@@ -7,7 +7,7 @@ setup(
     name='terraswitch',
     author="Gabriel Dutra",
     author_email="0xdutra@gmail.com",
-    version='1.0.0',
+    version='1.1.0',
     description="Teraswitch is a tool for management terraform versions.",
     include_package_data=True,
     long_description=long_description,
