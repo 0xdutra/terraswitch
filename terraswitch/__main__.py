@@ -4,6 +4,7 @@ from terraswitch.versions import Versions
 from terraswitch.download import Download
 from terraswitch.config import Config
 from terraswitch.banner import Banner
+from terraswitch.install import Install
 
 
 @click.command()
@@ -34,7 +35,10 @@ def main(list_versions, install, version):
             print(f"[+] Terraform version: {version}")
 
     elif install:
-        config = Config(version)
+        Config(version)
 
         download = Download(url)
-        download.download(version)
+        zip_file = download.download(version)
+
+        install = Install(zip_file)
+        install.install_binary()

@@ -26,6 +26,15 @@ class Install:
             print(e)
             sys.exit(1)
 
+    def _get_current_user(self):
+        return os.getuid()
+
+    def _get_current_directory(self):
+        return os.getcwd()
+
+    def _get_user_home(self):
+        return os.getenv('HOME')
+
     def _create_symbolic_link(self, src, dest):
         try:
             os.symlink(src, dest)
@@ -46,13 +55,18 @@ class Install:
         try:
             self._extract_file()
         except Exception as e:
-            print("[+] - Extract failed")
+            print(f"[+] - Extract failed: {e}")
 
-        user_home = os.getenv('HOME')
-        local_path = os.getcwd()
+        user_home = self._get_user_home()
+        local_path = self._get_current_directory()
+        uid = self._get_current_user()
 
-        terraform_bin = f"{local_path}/terraform"
-        terraform_bin_local_path = f"{user_home}/.local/bin/terraform"
+        if uid == 0:
+            terraform_bin = f"{local_path}/terraform"
+            terraform_bin_local_path = "/usr/local/bin/"
+        else:
+            terraform_bin = f"{local_path}/terraform"
+            terraform_bin_local_path = f"{user_home}/.local/bin/terraform"
 
         if path.isfile(terraform_bin_local_path) or path.islink(
                 terraform_bin_local_path):
@@ -60,3 +74,5 @@ class Install:
             self._remove_current_version(terraform_bin_local_path)
 
         self._create_symbolic_link(terraform_bin, terraform_bin_local_path)
+
+        print(f"[+] - Terraform has been successfully installed.")
